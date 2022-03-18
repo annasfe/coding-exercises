@@ -1,3 +1,4 @@
 # examples
 
-simple examples html and css for class
+simple examples for class
+html + css + javascrit
