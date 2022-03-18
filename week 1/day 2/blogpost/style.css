@@ -1,0 +1,58 @@
+body {
+    text-align: justify;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header nav {
+    list-style: none;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+header li {
+    display: inline;
+    border: 1px solid red;
+}
+
+header div {
+    display: flex;
+    justify-content: center;
+}
+header img {
+    width: 8%;
+    height: 8%;
+}
+.banner{
+    height: 400px;
+    background-image: url(chocolate.jpeg);
+    background-size: cover;
+}
+
+.title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+h2 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+main {
+    background-color: rgb(93, 184, 184);
+width: 50%;
+margin: auto;
+    padding: 50px;
+    z-index: 10px;
+}
+
+main img {
+    width: 80%;
+    height: 80%; 
+}
+footer img {
+    width: 8%;
+    height: 8%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

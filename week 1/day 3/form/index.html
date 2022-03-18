@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CSS Form</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <form action="/" method="post">
+        <div>
+          <label for="nameid">User Name (*) </label>
+          <input type="text" id="nameid" name="user_name" required placeholder="your name here">
+        </div>
+
+        <div>
+          <label for="passwordid">Password (*) </label>
+          <input type="password" id="passwordid" name="user_password" required>
+        </div>
+
+        <div>
+          <label for="emailid">Email (*) </label>
+          <input type="email" id="emailid" name="user_email" required>
+        </div>
+
+        <div class="full-width">
+          <label for="messageid">Your message</label>
+          <textarea id="messageid" name="user_message"></textarea>
+        </div>
+
+        <div>
+        <fieldset>
+          <legend>Your favorite music:</legend>
+          
+          <input type="radio" id="item1" name="music_choice" value="lindy">
+          <label for="item1">Lindy</label>
+
+          <input type="radio" id="item2" name="music_choice" value="jazz">
+          <label for="item2">Jazz</label>
+
+          <input type="radio" id="item3" name="music_choice" value="pop">
+          <label for="item3">Pop</label>
+
+          <input type="radio" id="item4" name="music_choice" value="other">
+          <label for="item4">Other...</label>
+
+        </fieldset>
+      </div>
+
+        <div>
+        <fieldset>
+          <legend>Your favorite food:</legend>
+          
+          <input type="checkbox" id="fitem1" name="food_choice" value="pizza" checked>
+          <label for="fitem1">Pizza</label>
+
+          <input type="checkbox" id="fitem2" name="food_choice" value="pasta">
+          <label for="fitem2">Pasta</label>
+
+          <input type="checkbox" id="fitem3" name="food_choice" value="icecream">
+          <label for="fitem3">Ice Cream</label>
+
+          <input type="checkbox" id="fitem4" name="food_choice" value="veggie">
+          <label for="fitem4">Veggie stuff</label>
+
+        </fieldset>
+      </div>
+
+          <div>
+        <label>Your choice: <input type="text" list="fruitlist"></label>
+        <datalist id="fruitlist">
+          <option>Apple</option>
+          <option>Banana</option>
+          <option>Orange</option>
+
+        </datalist>
+      </div>
+
+        <div>
+        <label>Your choice: </label>
+        <select>
+          <option>Apple</option>
+          <option>Banana</option>
+          <option selected>Orange</option>
+        </select>
+      </div>
+
+
+        <button type="Submit">Submit</button>
+
+      </form>
+    </main>
+  </body>
+</html>

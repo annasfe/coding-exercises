@@ -1,0 +1,30 @@
+body {
+    height: 1000px;
+}
+
+.container {
+  font-family: Arial, Helvetica, sans-serif;
+  position: fixed;
+}
+
+.container,
+.notification {
+  padding: 16px;
+}
+
+.notification {
+  height: 80px;
+  width: 800px;
+  border-radius: 10px;
+  background-color: red;
+  position:relative;
+
+}
+
+.close {
+  font-size: 16px;
+  position: absolute;
+  right: 10px;
+  top:10px;
+
+}

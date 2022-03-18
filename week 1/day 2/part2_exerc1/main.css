@@ -1,0 +1,69 @@
+body {
+    border: 2px solid black;
+    box-sizing: border-box;
+}
+
+nav {
+    border: 2px solid black;
+}
+
+ul {
+    list-style: none;
+}
+
+nav li {
+    border: 2px solid black;
+
+    width: 23%;
+    height: 80px;
+
+    display: inline-block;
+}
+
+nav li:not(:first-child) {
+    background-color: orange;
+}
+
+section {
+    width: 47%;
+    display: inline-block;
+    margin: 10px;
+}
+
+.left div {
+    border: 2px solid black;
+    width: 100%;
+    height: 350px;
+    border-radius: 10%;
+}
+
+div:empty {
+    background-color: greenyellow;
+} 
+
+.right li {
+    display: block;
+    border: 2px solid black;
+
+    width: 100%;
+    height: 60px;
+    margin-top: 8px;
+}
+
+.right li:last-child{
+    background-color: blue;
+}
+
+.right li:nth-child(2n+1) {
+    background-color: palevioletred;
+}
+
+.right ul {
+    border: 2px solid black;
+    padding: 20px;
+}
+
+main {
+    border: 2px solid black;
+    margin-top: 15px;
+}

@@ -1,0 +1,211 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Open+Sans&display=swap');
+
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0px;
+  padding: 0px;
+  font-size: 16px;
+  color: rgba(28, 26, 26,.75);
+  background-color: #EFECEC;
+}
+
+
+header{
+   padding: 10px 0 10px 0;
+   margin: 0px;
+   width: 100%;
+ }
+
+main, section{
+	width: 100%;
+	margin: 0 auto;
+ }
+
+.container{
+  width: 80%;
+  max-width: 1000px;
+  margin:0 auto;  
+  text-align: center;
+ }
+ 
+
+h1 {
+  font-size: 2em;
+  text-align: center;
+}    
+
+
+.description {
+    width: 70%;
+    margin: auto;
+    padding-bottom: 30px;
+}
+
+p a {
+  text-decoration: none;
+  color: #7A1600;
+}
+  
+p a:hover {
+  background: #7A1600;
+  color: #EFECEC;
+}
+
+
+/*Navigation Menu*/
+
+nav {
+  text-align: center;
+  margin: 0px auto 0px auto;  
+}
+
+nav ul.menu {
+  display: block;
+  max-width: 1000px;
+  margin: 0px auto 0px auto;
+  padding: 0px;
+}
+
+nav ul.menu li {
+  display: inline;
+}
+
+nav ul.menu li img {
+    vertical-align: middle; 
+    width: 100px;
+}
+
+nav a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 1em;
+  display: inline-block;
+  width: 16%;
+  text-align: center;
+  padding: 10px 20px;
+}
+  
+nav a:hover {
+  color: #7A1600;
+  text-decoration: overline;
+}
+
+
+
+
+/* Products */
+
+
+#products {
+    background-color: #e3dcd2;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.cards {
+  margin: 0 auto;
+  margin-top: 50px;
+  max-width: 960px;
+  display: grid;
+  grid-template-columns: repeat(4, 0.9fr);
+  grid-gap: 10px;
+}
+
+.card {
+  background-color: #fff;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+  position: relative;
+}
+
+.double {
+    grid-column: span 2;
+}
+
+.card img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* filter: grayscale(100%); */
+
+}
+
+/* effect of zooming in and putting color to gray image
+
+.card a {
+  display: block;
+  overflow: hidden;
+  }
+
+.card img:hover {
+  filter: grayscale(0%);
+  transition: 1s;
+  transform: scale(1.2);
+  transform-origin: 50% 50%;
+
+} */
+
+/* effect of having letter appear on top of the image */
+
+.card img,
+.card div {transition: opacity 0.5s ease-in-out;}
+.card div {position:absolute; top:0; left:0; opacity:0;}
+
+.card:hover img {opacity:0.2;}
+.card:hover div {opacity:1;}
+
+/* this sets the 3rd image as a background in css instead of in html */
+.card1 {
+  background-image: url(../images/bread2.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+
+.card p {
+  padding: 20px 10px;
+  vertical-align: middle;
+}
+
+
+
+
+/* Products 
+
+https://codepen.io/GeorgePark/pen/vdqYom
+
+https://codepen.io/perpetualgrimace/pen/ybgWXM
+
+
+*/
+
+
+@media screen and (max-width: 600px) {
+
+  nav ul.menu li{
+   display: block;
+  }
+
+  nav ul li:nth-child(3) {
+    display: none;
+  }
+
+  nav ul li a {
+    width: 100%;
+    font-size: 1.2em;
+    line-height: 1.8em;
+  }
+
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+
+  }
+
+  .card {
+    grid-column: span 2;
+  }
+  
+}
+

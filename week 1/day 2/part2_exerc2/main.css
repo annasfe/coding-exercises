@@ -1,0 +1,22 @@
+.container {
+  padding: 24px;
+}
+
+.image {
+  margin-bottom: 24px;
+  width: 400px;
+  height: 400px;
+  background-color: lightgray;
+}
+
+.shiba-inu {
+    background-image: url("shiba_inu.jpeg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.waves {
+    background-image: url("waves.jpeg");
+    background-size: cover;
+}
