@@ -14,7 +14,7 @@
 
 ## SOLUTIONS
 
-#//VIVIANA SOLUTION
+#VIVIANA SOLUTION
 
 let input = document.body.getElementsByTagName('input')[0];
     input.addEventListener('focus', function focus() {
@@ -26,7 +26,7 @@ let input = document.body.getElementsByTagName('input')[0];
         })
 
 
-#//MARIE-LYSE SOLUTION
+#MARIE-LYSE SOLUTION
 
  let inputNameBox = document.querySelector("#name")
 //we assume our input box has an id="name"
@@ -37,7 +37,7 @@ let input = document.body.getElementsByTagName('input')[0];
  inputNameBox.addEventListener('focus', reduceTextSizeInLabel)
 
 
-#//LIZ SOLUTION
+#LIZ SOLUTION
 //define the listener in the html
 <input type="text" onfocus="focusFunction()" onblur="blurFunction()">
 
