@@ -107,9 +107,10 @@ printGreeting('Sarah', 'Jessica', 'Parker', 'Maria', 'John');
 
 
 
-// ### Challenge 5: arrayBuilder
+/** 5. arrayBuilder
 
-// Write a function arrayBuilder that takes in a count object and returns an array filled with the appropriate numbers of elements. The order of the elements in the array does not matter, but repeated elements should be grouped.
+Write a function arrayBuilder that takes in a count object and returns an array filled with the appropriate numbers of elements. The order of the elements in the array does not matter, but repeated elements should be grouped.
+*/
 
 function arrayBuilder(obj) {
   let keys = Object.keys(obj);          //keys = [cats, dogs]
