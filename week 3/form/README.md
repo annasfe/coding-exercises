@@ -16,6 +16,7 @@
 
 #VIVIANA SOLUTION
 
+```
 let input = document.body.getElementsByTagName('input')[0];
     input.addEventListener('focus', function focus() {
             //document.getElementsByTagName('label')[0].classList.add('is-focused');
