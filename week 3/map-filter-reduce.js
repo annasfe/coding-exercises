@@ -1,5 +1,6 @@
 // CHALLENGE 0
-Implement fizzbuz using map!!
+//Implement fizzbuz using map!!
+//Output array should have the input number, or "Fizz" if number is multiple of 3, "Buzz" if number is multiple of 5, and "FizzBuzz" is multiple of both 3 and 5.
 
 wholes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 fizzBuzz = map(n => {
