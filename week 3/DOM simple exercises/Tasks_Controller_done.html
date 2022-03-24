@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Tasks Controller</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style id="compiled-css" type="text/css">
+      main {
+  display: flex;
+  height: 65vh;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+}
+
+.controls input {
+  margin-right: 16px;
+}
+
+#tasks {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#tasksList {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+}
+
+#tasksList ul {
+  padding: 0;
+  margin: 0;
+}
+
+.task {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.task.done .task-text {
+  text-decoration: line-through;
+}
+
+.task-text {
+  flex: 1;
+}
+
+.hide {
+  display: none;
+}
+
+    /* EOS */
+  </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/marx/3.0.7/marx.min.css" integrity="sha512-gIfBOM+mjygWMgT6b/dqLds7xc9UxAoN+04jxTdg7oLrqJC8dGdbgGU4ddwPDxOeluhkm+0fsIpFLKwrRBxmGQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+<body>
+
+<main>
+  <h1>
+    To Do List
+  </h1>
+  <div class="controls">
+    <input type="text" id="taskInput" placeholder="Enter a task">
+    <button id="taskButton">
+      Add
+    </button>
+  </div>
+  <div id="tasks">
+    <h2>
+      Tasks
+    </h2>
+    <div id="tasksList">
+      <ul>
+        <li class="task" data-id="1">
+          <span class="task-text">TaskString</span>
+          <input type="checkbox" class="done-checkbox">
+        </li>
+      </ul>
+      <span id="noTasks">You have no tasks yet.</span>
+    </div>
+    <div id="tasksInfo">
+      You have 0 tasks total. 0 completed and 0 pending.
+    </div>
+  </div>
+</main>
+
+
+<script type="text/javascript">
+
+let tasksArray = [{
+    id: 1,
+    task: 'write examples',
+    done: false
+  },
+  {
+    id: 15,
+    task: 'prepare class',
+    done: false,
+  }
+]
+
+
+function allTasks() {
+  return tasksArray;
+}
+
+function oneTask(id) {
+
+  // Same thing but mildly different
+  /*
+  for (let task of tasksArray) {
+    if (task.id === id) {
+      return task
+    }
+  }
+  */
+
+  return tasksArray.find(function(task) {
+    return task.id === id;
+  })
+
+}
+
+// Update
+function updateTask(id, taskString, status) {
+  let task = oneTask(id);
+
+  if (taskString) {
+    task.task = taskString;
+  }
+
+  if (status !== undefined) {
+    task.done = status;
+  }
+}
+
+function updateStatus(id, status) {
+  let task = oneTask(id);
+
+  if (status !== undefined) {
+    task.done = status;
+  }
+}
+
+function toggleTask(id) {
+  let task = oneTask(id);
+  task.done = !task.done;
+}
+
+
+function ids() {
+  return tasksArray.map(function(task) {
+    return task.id;
+  })
+}
+
+function maxId() {
+  let idsArray = ids();
+  return Math.max(...idsArray);
+}
+// Read all
+// console.log(tasks)
+
+function addNewTaskObject(taskObject) {
+  let newId = maxId() + 1;
+  taskObject.id = newId;
+  tasksArray.push(taskObject);
+}
+
+function addNewTask(taskString) {
+  let newId = maxId() + 1;
+  let newTask = {
+    id: newId,
+    task: taskString,
+    done: false,
+  }
+  tasksArray.push(newTask);
+}
+
+
+function taskObjectToTaskView(task) {
+  /*
+  We will get this:
+  {
+    id: 15,
+    task: 'prepare class',
+    done: false,
+  }
+  
+  We create this:
+  <li class="task" data-id="15">
+     <span class="task-text">prepare class</span>
+     <input type="checkbox" class="done-checkbox" />
+  </li>
+	*/
+
+  let taskListItem = document.createElement('li');
+  taskListItem.classList.add('task');
+  taskListItem.dataset.id = task.id;
+
+  let taskTextSpan = document.createElement('span');
+  taskTextSpan.classList.add('task-text');
+  taskTextSpan.innerHTML = task.task;
+
+  taskListItem.append(taskTextSpan);
+
+  let doneCheckbox = document.createElement('input');
+  doneCheckbox.setAttribute('type', 'checkbox')
+  doneCheckbox.setAttribute('class', 'done-checkbox')
+  doneCheckbox.checked = task.done;
+
+  if (task.done) {
+    taskListItem.classList.add('done');
+  } else {
+    taskListItem.classList.remove('done');
+  }
+
+  taskListItem.append(doneCheckbox);
+
+  return taskListItem;
+}
+
+function tasksArrayToTaskList(arrayOfTasks) {
+  let tasksList = document.createElement('ul');
+  for (let taskObject of arrayOfTasks) {
+    let taskView = taskObjectToTaskView(taskObject);
+    tasksList.append(taskView);
+  }
+  return tasksList;
+}
+
+
+// Views (Presentation logic)
+window.addEventListener('load', function(event) {
+  let taskInput = document.getElementById('taskInput');
+  let taskButton = document.getElementById('taskButton');
+  let noTasksSpan = document.getElementById('noTasks');
+
+  function render() {
+    let tasksListDiv = document.getElementById('tasksList');
+    let newTasksList = tasksArrayToTaskList(tasksArray);
+    tasksListDiv.innerHTML = newTasksList.outerHTML;
+
+    let checkboxes = document.querySelectorAll('.done-checkbox');
+    // let checkboxes = document.getElementsByClassName('done-checkbox');
+    for (let checkbox of checkboxes) {
+      checkbox.addEventListener('change', function(event) {
+
+        let checked = event.target.checked;
+        let id = parseInt(event.target.parentNode.dataset.id);
+
+        if (checked) {
+          updateStatus(id, checked)
+          event.target.parentNode.classList.add('done')
+        }
+
+        if (!checked) {
+          updateStatus(id, checked)
+          event.target.parentNode.classList.remove('done')
+        }
+      })
+    }
+  }
+
+  render();
+
+  taskButton.addEventListener('click', function(event) {
+    let taskString = taskInput.value;
+    if (taskInput.value !== "") {
+      addNewTask(taskString);
+      render();
+    }
+  })
+})
+
+
+
+  //]]></script>
+
+</body>
+</html>
