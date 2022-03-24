@@ -8,7 +8,7 @@ fizzBuzz = map(n => {
 }, wholes)
 
 
-// using reduce number to get maximum of the array.
+// using reduce method to get maximum of the array.
 
 
 
