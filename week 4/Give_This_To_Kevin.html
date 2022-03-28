@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Give This To Kevin</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+    
+
+    <script type="text/javascript">
+
+
+function giveThisToKevin(familyChain) {
+    //get first person from array (array becomes smaller)
+    let findKevin = familyChain.shift();        
+
+    if(findKevin==="Kevin") 
+        return "Kevin is safe"; 
+
+    //this is just to print the message with some delay   
+        setTimeout(()=>console.log(`${findKevin} says give this to Kevin`),10000/(familyChain.length+1));
+    
+    if(familyChain.length>0)
+        return giveThisToKevin(familyChain)
+    else
+        return "KEVIN!!!"
+}
+
+
+
+
+giveThisToKevin(['mom', 'dad', 'uncle', 'aunt', 'brother 1', 'brother 2', 'sister 1', 'sister2']) // KEEEEEEVIN!
+//giveThisToKevin(['mom', 'dad', 'uncle', 'aunt', 'brother 1', 'brother 2', 'sister 1', 'sister2', 'Kevin', 'brother3']) // 'Kevin is safe'
+
+
+</script>
+
+
+
+</body>
+</html>
