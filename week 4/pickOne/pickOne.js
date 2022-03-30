@@ -9,7 +9,7 @@ class Player {
 
 let playersArray = [];
 let numberOfPlayers = 0;
-let comparedItems = [];
+let competingItems = [];
 
 let input = document.querySelector("input");
 let buttons = document.getElementsByTagName("button");
@@ -47,23 +47,29 @@ function getImages(){
     .catch((error) => console.log("error" + error));
 }
 
-
-function startGame(){
+//if no tempWinner is passed, I default to -1 so that I know there is no previous winner
+function startGame(tempWinnerID = -1){
     inputDiv.style.display="none";  //now we hide input div and show the images divs
     gameDiv.style.display = "flex";
 
     //we get two random numbers (from 0 to size of our playersArray)
     let i=getRandomNum(numberOfPlayers);
     let j=getRandomNum(numberOfPlayers);
+
+    if(tempWinnerID!=-1) {
+//TODO!! if we already have a winner item from a previous round we just need one new item!
+    }
+
     while(i===j)
     {   //if two random numbers are the same, try again and pick a different one
-        j=getRandomNum(numberOfPlayers);
+        i=getRandomNum(numberOfPlayers);
     }  
     //create the two image elements, with src obtained from the randomly selected objects
     player1.innerHTML = `<img src="${playersArray[i].url}" data-id="${playersArray[i].id}"/>`
     player2.innerHTML = `<img src="${playersArray[j].url}" data-id="${playersArray[j].id}"/>`
 
-    comparedItems = [playersArray[i].id,playersArray[j].id];
+    //I keep the ids of the two contestants in an array so that I can then use to find out who won from the click event and remove the loser one from my players array.
+    competingItems = [playersArray[i].id,playersArray[j].id];
 
     gameDiv.addEventListener("click", pickTempWinner);
 }
@@ -72,15 +78,15 @@ function pickTempWinner(event) {
 
     let tempWinnerID = event.target.getAttribute("data-id"); //the id of the clicked image
     console.log(tempWinnerID);
-    //the id of the other image (loser), we get this from the comparedItems array which stored the two IDs
-    let loserID = (comparedItems[0]==tempWinnerID) ? comparedItems[1] : comparedItems[0]; 
+    //the id of the other image (loser), we get this from the competingItems array which stored the two IDs
+    let loserID = (competingItems[0]==tempWinnerID) ? competingItems[1] : competingItems[0]; 
     
     playersArray=playersArray.filter((item)=>item.id!=loserID); //remove the loser object
     numberOfPlayers--;
 
     console.log(playersArray);
     if(numberOfPlayers>1)
-        startGame();
+        startGame(tempWinnerID); //I restart keeping current winner
     else
         endGame();    
 }
