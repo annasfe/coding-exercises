@@ -1,0 +1,33 @@
+body {
+    background-color:darksalmon;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: medium;
+}
+
+#players-input{
+    display: flex;;
+    justify-content: center; 
+}
+
+input {
+    width: 200px;
+    font-size: 1.2em;
+}
+
+#game {
+    display:none;
+    justify-content: center;
+}
+
+#player1, #player2 {
+    border: 3px solid red;
+    height: 500px;
+    width: 300px;
+}
+
+#game img {
+    object-fit: cover;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
