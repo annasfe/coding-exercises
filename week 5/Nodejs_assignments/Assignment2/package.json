@@ -1,0 +1,14 @@
+{
+  "name": "assignment2",
+  "version": "1.0.0",
+  "description": "Introduction to Node.js and File System Module",
+  "main": "Exercise_1.1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jessica Perez Guijarro",
+  "license": "AllWomen",
+  "dependencies": {
+    "pokemon": "^2.0.2"
+  }
+}
