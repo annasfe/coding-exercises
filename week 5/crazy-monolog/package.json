@@ -1,0 +1,17 @@
+{
+  "name": "crazy-monolog",
+  "version": "1.0.0",
+  "description": "Yoda talks with Sheldon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "crazy-quotes": "^1.0.4",
+    "express": "^4.17.3"
+  }
+}
