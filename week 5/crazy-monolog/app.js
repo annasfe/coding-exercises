@@ -1,18 +1,19 @@
 const express = require('express');
 const crazyObject = require('./quotes');
+//const static = require('serve-static');
+const path = require('path')
 
 const app = express();
 
 app.use(express.json())
+app.use(express.static('public'));
 
 //server params
 const hostname = 'localhost';
 const port = process.env.PORT || 3000; 
 
 app.get('/', (req, res) => {
-    res.send(crazyObject.crazyString);
-    //res.status(200).send('Success!');
-    //res.status(404).send('Not found!');
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.get('/hello/:id', (req, res) => {
