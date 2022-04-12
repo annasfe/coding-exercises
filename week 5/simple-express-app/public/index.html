@@ -7,11 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-
+    <button onclick="createUsers()">Click me!</button>
     <h1></h1>
 
     <script>
-        window.onload = function() {
+
+        function getUsers() {
             
             fetch('/users')
             .then(response => response.json())
@@ -19,8 +20,17 @@
                 document.querySelector("h1").innerHTML = data.name;
             })
             .catch();
-
         };
+
+        function createUsers() {
+            
+            fetch("/users", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name: "Maria", email: "maria@allwomen.tech", age:39 }),
+            })
+        };
+
     </script>
 </body>
 </html>

@@ -7,7 +7,6 @@ const userSchema = new mongoose.Schema({
    },
     email: String,
     age: Number
-
 });
 
 module.exports = new mongoose.model("User", userSchema);
