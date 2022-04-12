@@ -1,0 +1,46 @@
+CHALLENGE 1: Follow simple exercises along with me!
+
+https://www.mongodb.com/docs/manual/tutorial/getting-started/
+(preloaded mongodb shell, no installation needed)
+ 
+https://edshare.gcu.ac.uk/4333/2/index.html
+
+https://codingonly4u.blogspot.com/2018/07/mongodb-exercises-practice-solution.html
+
+https://www.mydatahack.com/mongodb-skills-essential-exercise/
+
+see here comparison with sql
+https://www.freecodecamp.org/news/introduction-to-mongoose-for-mongodb-d2a7aa593c57/
+
+
+
+CHALLENGE 2: Install mongodb locally
+
+- Install and start mongodb server
+- Run mongo to connect and start testing
+- Do some tests (create DB, insert data, find and filter)
+- Load the movies dataset from mongo bulk and play around
+
+
+CHALLENGE 3: Create MongodB Atlas account and play with demo data
+
+Find all restaurants of cuisine American and return only their address
+
+{cuisine: "American", borough : "Brooklyn"},{address: 1}  //in atlas it should be inside PROJECT field in options
+{cuisine: "American", borough : "Brooklyn"}.limit(2) 
+
+with a coma in between the arguments by default is AND, if you want OR you must add in front
+{$or [{cuisine: "American", borough : "Brooklyn"}]}
+
+find airbnbs in portugal
+{"address.country" : "Portugal"} //when nested object field, use quotes!
+xxxx.count() returns number of results matching your query
+
+
+More restaurant related exercises: 
+https://www.w3resource.com/mongodb-exercises/
+
+
+
+
+
