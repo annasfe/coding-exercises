@@ -9,10 +9,16 @@
 <body>
 
     <h1></h1>
+
     <script>
         window.onload = function() {
             
-            document.querySelector("h1").innerHTML = "Good morning everybody!"
+            fetch('/users')
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector("h1").innerHTML = data.name;
+            })
+            .catch();
 
         };
     </script>
