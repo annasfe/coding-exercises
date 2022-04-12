@@ -1,5 +1,5 @@
 ####### create index ##########
-db.movies.createIndex({title:1}, {collation:{locale: 'en', strength:2}}); ==> + regEx
+db.movies.createIndex({title:1}, {collation:{locale: 'en', strength:2}});
 db.movies.createIndex({title: "text"})
 
 ####### insert data ##########
