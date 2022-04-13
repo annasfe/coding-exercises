@@ -7,7 +7,9 @@
     <title>Document</title>
 </head>
 <body>
+    <button onclick="deleteUsers()">Click me to Delete!</button>
     <button onclick="createUsers()">Click me!</button>
+
     <h1></h1>
 
     <script>
@@ -28,7 +30,24 @@
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name: "Maria", email: "maria@allwomen.tech", age:39 }),
+            }).then(response => response.json())
+            .then(data => {
+                document.querySelector("h1").innerHTML = `Created user ${data.name}`;
             })
+            .catch();
+        };
+
+        function deleteUsers() {
+            
+            fetch("/users/anna", {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({}),
+            }).then(response => response.json())
+            .then(data => {
+                document.querySelector("h1").innerHTML = data.message;
+            })
+            .catch();
         };
 
     </script>
