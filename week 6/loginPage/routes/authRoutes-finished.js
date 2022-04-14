@@ -23,11 +23,13 @@ router.get('/', checkAuthenticated, (req, res) => {
     res.render('login.ejs')
   })
   
-  router.post('/login', checkNotAuthenticated, passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true      //using Flash, displays the error messages from passport control
-  }))
+  router.post('/login', checkNotAuthenticated, (req, res, next) => {
+    passport.authenticate('local', {
+      successRedirect: '/',
+      failureRedirect: '/login',
+      failureFlash: true
+    })(req, res, next);
+  });
   
   router.get('/register', checkNotAuthenticated, (req, res) => {
     res.render('register.ejs')
