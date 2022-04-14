@@ -10,8 +10,10 @@ function initialize(passport, getUserByEmail, getUserById) {
 
   //This is the callback function that goes inside localstrategy setup
   const authenticateUser = async (email, password, done) => {
-    const user = getUserByEmail(email)
-    if (user == null) {
+    const user = getUserByEmail(email)  
+    //const user = Users.findOne({email: email})   
+
+    if (!user) {
       return done(null, false, { message: 'No user with that email' })
     }
 
