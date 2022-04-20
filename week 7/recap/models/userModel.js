@@ -14,7 +14,10 @@ const UserSchema = new mongoose.Schema({
     password : {
         type: String,
         required: true
-    }
+    },
+    favorites: [{
+        type: String,
+    }]
 });
 
 module.exports = new mongoose.model("User", UserSchema);

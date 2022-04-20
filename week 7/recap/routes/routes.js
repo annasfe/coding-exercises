@@ -2,6 +2,8 @@ const router = require('express').Router();
 const routesController = require('../controllers/routeController')
 
 router.get('/index', isLoggedIn, routesController.getIndex)
+router.get('/favorites', isLoggedIn, routesController.getFavorites)
+router.post('/favorites', isLoggedIn, routesController.addFavorite)
 
 router.get('/', isNotLoggedIn, routesController.login)
 router.post('/', isNotLoggedIn, routesController.checkUser)

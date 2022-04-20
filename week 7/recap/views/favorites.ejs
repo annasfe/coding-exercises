@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User favorites</title>
+    <link rel="stylesheet" href="styles.css"></head>
+
+</head>
+<body>
+
+<h1>Hi <%= user.name %></h1>
+<h2>Here are your favorites:</h2>
+<ul>
+<% for (let i=0; i<user.favorites.length; i++) {%>
+    <li>
+        <%=user.favorites[i]%>
+    </li>
+<% } %>
+</ul>
+
+<form action="/favorites" method="POST">
+    <div>
+        <label for="fav_movie">Your favorite movie</label>
+        <input type="text" id="fav_movie" name="fav_movie" required>
+      </div>
+    <button type="submit">Add favorite!</button>
+  </form>
+
+
+</body>
+</html>

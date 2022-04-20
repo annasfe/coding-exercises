@@ -3,14 +3,27 @@ const bcrypt = require('bcrypt')
 const initialize = require('../config/passport-conf')
 const passport = require('passport')
 
-const login = async (req, res) => {
-    res.render('login.ejs')
-}
 
 initialize(passport);
 
-const getIndex = async (req, res) => {
-    res.render('index.ejs', {name: req.user.name, id: req.user.id})
+
+const login = (req, res) => {
+    res.render('login.ejs')
+}
+
+const getIndex = (req, res) => {
+    res.render('index.ejs', {user: req.user})
+}
+
+const getFavorites = (req, res) => {
+    res.render('favorites.ejs', {user: req.user})
+}
+
+const addFavorite = async (req, res) => {
+    const user = await User.findOne({id: req.user.id})
+    user.favorites.push(req.body.fav_movie)
+    await user.save();
+    res.redirect('/favorites')
 }
 
 const checkUser = async (req, res) => {
@@ -32,7 +45,9 @@ const createUser = async (req, res) => {
         await User.create({
             name: req.body.name,
             email: req.body.email,
-            password: hashedPassword        })
+            password: hashedPassword,
+            favorites: req.body.fav_movie
+        })
 
         //res.send(`Data received ${name}`)
         res.redirect('/')
@@ -42,6 +57,4 @@ const createUser = async (req, res) => {
     }
 }
 
-
-
-module.exports = {getIndex, login, checkUser, createUser, register}
+module.exports = {getIndex, getFavorites, addFavorite, login, checkUser, createUser, register}
