@@ -121,34 +121,31 @@ Same as with login, a successful register should return status 200 - OK and incl
 
 ```javascript
 // @access Public
-exports.register = (req, res, next) => {
-  User.findOne({ email: req.body.email }, function (error, user) {
+exports.register = async (req, res, next) => {
+  
+  const user = await User.findOne({ email: req.body.email });
     if (user) {
       return res.status(400).send({
         message: `Email <${req.body.email}> already taken`,
       });
     } else {
-      let user = new User(req.body);
-
-      user.generateHashPassword(req.body.password);
-      user.save((error) => {
-        if (error) {
-          next(error);
-        } else {
-          //Auto-login
-          req.login(user, function (err) {
-            if (err) {
-              next(err);
-            }
-            res.status(200).json({
-              email: user.email,
-              name: user.name,
-            });
-          });
-        }
-      });
+    
+     try { 
+        const hashedPassword = await bcrypt.hash(req.body.password, 10)
+        const newuser = await User.create({
+          name: req.body.name,
+          email: req.body.email,
+          password: hashedPassword
+        });
+           res.status(200).json({
+              email: newuser.email,
+              name: newuser.name,
+           });
+     }catch(error) {
+        console.log(error)
+        next(error);
     }
-  });
+  };
 };
 ```
 
