@@ -175,19 +175,28 @@ exports.getUser = (req, res) => {
 
 ## Configure `express-session`
 
-We need to tweak `express-session` configuration to be able to store user sessions in the browser's cookies after a successful login. Otherwise, authenticated API routes will not work.
+We need to tweak `express-session` configuration to be able to store user sessions in the browser's cookies after a successful login. Otherwise, authenticated API routes will not work. We also need to install and use connect-mongo module, to store the session info in our mongodb.
 
 ```javascript
-module.exports = session({
+
+const MongoStore = require("connect-mongo");
+
+const sessionStore = new MongoStore({
+  mongoUrl: process.env.MONGO_URL,
+  collection: "sessions",
+});
+
+app.session({
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   store: sessionStore,
+  unset: "destroy",
   cookie: {
     httpOnly: true,
-    maxAge: ONE_DAY,
-    sameSite: "none",
-    secure: process.env.NODE_ENV !== "development",
+    maxAge: 1000 * 60 * 60 * 24,
+    sameSite: true,
+    secure: process.env.NODE_ENV !== "development"
   },
 });
 ```
