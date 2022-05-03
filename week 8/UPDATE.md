@@ -88,30 +88,25 @@ Previously, a successful register operation would redirect to a page in our appl
 
 ```javascript
 // @access Public
-exports.register = (req, res, next) => {
-  User.findOne({ email: req.body.email }, function (error, user) {
+exports.register = async (req, res, next) => {
+  const user = await User.findOne({ email: req.body.email })
     if (user) {
       return res.status(400).send({
         message: `Email <${req.body.email}> already taken`,
       });
     } else {
-      let user = new User(req.body);
-      user.generateHashPassword(req.body.password);
-      user.save((error, User) => {
-        if (error) {
-          next(error);
-        } else {
-          //Auto-login
-          req.login(user, function (err) {
-            if (err) {
-              next(err);
-            }
-            res.redirect("/");
-          });
-        }
+    try {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10)      
+      await User.create({
+        name: req.body.name,
+        email: req.body.email,
+        password: hashedPassword
       });
+      res.redirect('/login')
+    } catch(err) {
+      res.redirect('/register')
     }
-  });
+    }
 };
 ```
 
