@@ -186,7 +186,7 @@ const sessionStore = new MongoStore({
   collection: "sessions",
 });
 
-app.session({
+app.use(session({
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
@@ -198,7 +198,7 @@ app.session({
     sameSite: true,
     secure: process.env.NODE_ENV !== "development"
   },
-});
+}));
 ```
 
 ## Configure CORS
@@ -216,6 +216,24 @@ const cors = require("cors");
 
 [...]
 
-const app = express();
-app.use(cors({ origin: "*", credentials: true }));
+// ********* CORS SETUP *************
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header("Access-Control-Allow-Origin", req.headers.origin);
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
+    );
+    next();
+  });
+  
+  app.use(
+    cors({
+      credentials: true,
+      allowedHeaders: ["Origin, X-Requested-With, Content-Type, Accept"],
+    })
+  );
+  app.set("trust proxy", 1);
+// ********* CORS SETUP *************
 ```
